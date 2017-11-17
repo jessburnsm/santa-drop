@@ -21,26 +21,32 @@ public class PlayerMovement : MonoBehaviour
 	{
 		//Store the current horizontal input in the float moveHorizontal.
 		float moveHorizontal = Input.GetAxis("Horizontal");
+        float moveVertical = Input.GetAxis("Vertical");
 
-		//If the player is moving, flip the sprite so that the character is facing the right direction
-//		if(moveHorizontal < 0)
-//		{
-//			animator.SetBool("isWalking", true);
-//			sprite.flipX = true;
-//		}
-//		else if(moveHorizontal > 0)
-//		{
-//			animator.SetBool("isWalking", true);
-//			sprite.flipX = false;
-//		}
-//		else
-//		{
-//			animator.SetBool("isWalking", false);
-//		}
+        //If the player is moving, flip the sprite so that the character is facing the right direction
+        //		if(moveHorizontal < 0)
+        //		{
+        //			animator.SetBool("isWalking", true);
+        //			sprite.flipX = true;
+        //		}
+        //		else if(moveHorizontal > 0)
+        //		{
+        //			animator.SetBool("isWalking", true);
+        //			sprite.flipX = false;
+        //		}
+        //		else
+        //		{
+        //			animator.SetBool("isWalking", false);
+        //		}
 
-		//If the player is moving, set their velocity appropriately
-		Vector2 velocity = rb2d.velocity;
-		velocity.x = moveHorizontal * speed;
-		rb2d.velocity = velocity;
-	}
+        // Set the player's left/right movement
+        Vector2 velocity = rb2d.velocity;
+        velocity.x = moveHorizontal * speed;
+        rb2d.velocity = velocity;
+
+        // Set the player's up/down movement
+        // Clamp the player's movement so that they can't stop or go in the opposite direction
+        Vector2 movement = new Vector2(0, Mathf.Clamp(moveVertical, -.5f, .5f));
+        rb2d.AddForce(movement * speed);
+    }
 }
