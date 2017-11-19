@@ -19,9 +19,7 @@ public class PlayerMovement : MonoBehaviour
     // Rigidbody2D component required to use 2D Physics.
     private Rigidbody2D rb2d;
 
-    // Score counter
-    private int score = 0;
-    public Text scoreText;
+	public LevelManager levelManager;
 
     // private Animator animator;
     // private SpriteRenderer sprite;
@@ -67,9 +65,6 @@ public class PlayerMovement : MonoBehaviour
         transform.position = new Vector2(Mathf.Clamp(transform.position.x, -5f, 5f), transform.position.y);
 
         // updateAnimations(float moveHorizontal, Animator animator, SpriteRenderer sprite)
-
-        updateScore();
-
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -78,11 +73,29 @@ public class PlayerMovement : MonoBehaviour
         if (other.gameObject.CompareTag("Collectible"))
         {
             other.gameObject.SetActive(false);
-            score += 1;
-            updateScore();
+			levelManager.updateScore();
         }
-    }
 
+		// If player has hit an obstacle, end the game
+		if (other.gameObject.CompareTag ("Obstacle")) {
+			levelManager.endGame ();
+		}
+
+		// If player has the end level object, finish the level
+		if (other.gameObject.CompareTag("Finish"))
+		{
+			gameObject.SetActive(false);
+			levelManager.endLevel ();
+		}
+
+		// If player has the end level bonus object, finish the level + add score bonus
+		if (other.gameObject.CompareTag("FinishBonus"))
+		{
+			gameObject.SetActive(false);
+			levelManager.addBonus ();
+			levelManager.endLevel ();
+		}
+    }
 
     private bool jumpCooldownActive()
     {
@@ -107,10 +120,5 @@ public class PlayerMovement : MonoBehaviour
         {
         	animator.SetBool("isWalking", false);
         }
-    }
-
-    private void updateScore()
-    {
-        scoreText.text = "Score: "+ score;
     }
 }
