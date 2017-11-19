@@ -5,26 +5,35 @@ using UnityEngine;
 public class LevelGenerator : MonoBehaviour {
 
     public GameObject obstaclePrefab;
+    public GameObject collectiblePrefab;
 
     public int numberOfPlatforms = 200;
-    public float levelWidth = 3f;
-    public float minY = .2f;
-    public float maxY = 1.5f;
+    public float levelWidth = 4.5f;
+    public float obstacleMinY = .2f;
+    public float obstacleMaxY = 1.5f;
 
-	// Use this for initialization
-	void Start () {
+    public int numberOfCollectibles = 50;
+    public float collectibleMinY = 1.5f;
+    public float collectibleMaxY = 3f;
+
+    // Use this for initialization
+    void Start () {
         Vector3 spawnPosition = new Vector3();
 
 		for(int i = 0; i < numberOfPlatforms; i++)
         {
-            spawnPosition.y -= Random.Range(minY, maxY);
+            spawnPosition.y -= Random.Range(obstacleMinY, obstacleMaxY);
             spawnPosition.x = Random.Range(-levelWidth, levelWidth);
             Instantiate(obstaclePrefab, spawnPosition, Quaternion.identity);
         }
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+        spawnPosition = new Vector3();
+
+        for (int x = 0; x < numberOfCollectibles; x++)
+        {
+            spawnPosition.y -= Random.Range(collectibleMinY, collectibleMaxY);
+            spawnPosition.x = Random.Range(-levelWidth, levelWidth);
+            Instantiate(collectiblePrefab, spawnPosition, Quaternion.identity);
+        }
+    }
 }
