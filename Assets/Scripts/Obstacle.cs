@@ -1,14 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Obstacle : MonoBehaviour {
-
-	void OnCollisionEnter2D(Collision2D collision){
-		Rigidbody2D rb = collision.collider.GetComponent<Rigidbody2D>();
-		if (rb != null) {
-			Debug.Log ("Game Ends");
-			//Application.LoadLevel("GameOver");
-		}
-	}
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        // If player has hit an obstacle, end the game
+        if (other.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("Game is over.");
+        }
+    }
 }
