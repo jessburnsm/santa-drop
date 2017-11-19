@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class PlayerMovement : MonoBehaviour
@@ -17,6 +18,10 @@ public class PlayerMovement : MonoBehaviour
 
     // Rigidbody2D component required to use 2D Physics.
     private Rigidbody2D rb2d;
+
+    // Score counter
+    private int score = 0;
+    public Text scoreText;
 
     // private Animator animator;
     // private SpriteRenderer sprite;
@@ -63,7 +68,21 @@ public class PlayerMovement : MonoBehaviour
 
         // updateAnimations(float moveHorizontal, Animator animator, SpriteRenderer sprite)
 
+        updateScore();
+
     }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        // If player has hit a collectible, disable object and increase score
+        if (other.gameObject.CompareTag("Collectible"))
+        {
+            other.gameObject.SetActive(false);
+            score += 1;
+            updateScore();
+        }
+    }
+
 
     private bool jumpCooldownActive()
     {
@@ -88,5 +107,10 @@ public class PlayerMovement : MonoBehaviour
         {
         	animator.SetBool("isWalking", false);
         }
+    }
+
+    private void updateScore()
+    {
+        scoreText.text = "Score: "+ score;
     }
 }
