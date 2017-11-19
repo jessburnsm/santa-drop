@@ -6,6 +6,7 @@ public class LevelGenerator : MonoBehaviour {
 
     public GameObject obstaclePrefab;
     public GameObject collectiblePrefab;
+    public Transform LevelEnd;
 
     public int numberOfPlatforms = 200;
     public float levelWidth = 4.5f;
@@ -27,6 +28,8 @@ public class LevelGenerator : MonoBehaviour {
             Instantiate(obstaclePrefab, spawnPosition, Quaternion.identity);
         }
 
+        float miny = spawnPosition.y;
+
         spawnPosition = new Vector3();
 
         for (int x = 0; x < numberOfCollectibles; x++)
@@ -35,5 +38,10 @@ public class LevelGenerator : MonoBehaviour {
             spawnPosition.x = Random.Range(-levelWidth, levelWidth);
             Instantiate(collectiblePrefab, spawnPosition, Quaternion.identity);
         }
+
+        // Find the lowest y value of an item in the game
+        miny = miny < spawnPosition.y ? miny : spawnPosition.y;
+
+        LevelEnd.position = new Vector2(0, miny - 5f); 
     }
 }
