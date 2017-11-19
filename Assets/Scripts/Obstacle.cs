@@ -8,7 +8,7 @@ public class Obstacle : MonoBehaviour {
 		Rigidbody2D rb = collision.collider.GetComponent<Rigidbody2D>();
 		if (rb != null) {
 			Debug.Log ("Game Ends");
-			Application.LoadLevel("GameOver");
+			//Application.LoadLevel("GameOver");
 		}
 	}
 }
