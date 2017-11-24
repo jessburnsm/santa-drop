@@ -27,7 +27,8 @@ public class ScrollingBackground : MonoBehaviour {
 		}
 
 		// If the camera has left the background entirely, destroy this panel
-		if (hasDrawnNextPanel && camera.transform.position.y < (center.y - size.y)) {
+        // Add a buffer of 2x to the size to make sure the background is still around if the player jumps
+		if (hasDrawnNextPanel && camera.transform.position.y < (center.y - 1.5*size.y)) {
 			Destroy (gameObject);
 		}
 	}

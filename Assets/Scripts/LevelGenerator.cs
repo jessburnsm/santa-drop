@@ -9,8 +9,10 @@ public class LevelGenerator : MonoBehaviour {
     public Transform LevelEnd;
 	public Transform Chimney;
 
+    private float minY;
+
     public int numberOfPlatforms = 200;
-    public float levelWidth = 4.5f;
+    public float levelWidth = 4f;
     public float obstacleMinY = .2f;
     public float obstacleMaxY = 1.5f;
 
@@ -29,7 +31,7 @@ public class LevelGenerator : MonoBehaviour {
             Instantiate(obstaclePrefab, spawnPosition, Quaternion.identity);
         }
 
-        float miny = spawnPosition.y;
+        minY = spawnPosition.y;
 
         spawnPosition = new Vector3();
 
@@ -41,10 +43,15 @@ public class LevelGenerator : MonoBehaviour {
         }
 
         // Find the lowest y value of an item in the game
-        miny = miny < spawnPosition.y ? miny : spawnPosition.y;
+        minY = minY < spawnPosition.y ? minY : spawnPosition.y;
 
 		// Set the level end position and randomly position the chimney on top of it
-        LevelEnd.position = new Vector2(0, miny - 5f);
-		Chimney.position = new Vector2 (Random.Range (-levelWidth, levelWidth), Chimney.position.y);
+        LevelEnd.position = new Vector2(0, minY - 5f);
+		Chimney.position = new Vector2 (Random.Range (-.85f, 3.2f), Chimney.position.y);
+    }
+
+    public float getMinY()
+    {
+        return minY;
     }
 }

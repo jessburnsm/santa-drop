@@ -7,6 +7,9 @@ public class PlayerMovement : MonoBehaviour
     // Player's left/right movement speed
 	public float speed = 10f;
 
+    // Player's left/right movement range
+    private float movementRange = 3.5f;
+
     // Player's max falling speed
     public float maxSpeed = 10.5f;
 
@@ -21,15 +24,15 @@ public class PlayerMovement : MonoBehaviour
 
 	public LevelManager levelManager;
 
-    // private Animator animator;
-    // private SpriteRenderer sprite;
+    private Animator animator;
+    private SpriteRenderer sprite;
 
     // Use this for initialization
     void Start()
 	{
 		rb2d = GetComponent<Rigidbody2D>();
-        // sprite = GetComponent<SpriteRenderer>();
-        // animator = GetComponent<Animator>();
+        sprite = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
     }
 
     //FixedUpdate is called at a fixed interval and is independent of frame rate. Put physics code here.
@@ -39,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
 		float moveHorizontal = Input.GetAxis("Horizontal");
 
         // Prevent jitter when player is at the edge of the playing field
-        if ( (moveHorizontal > 0 && transform.position.x >= 5f) || (moveHorizontal < 0 && transform.position.x <= -5f) )
+        if ( (moveHorizontal > 0 && transform.position.x >= movementRange) || (moveHorizontal < 0 && transform.position.x <= -movementRange) )
             moveHorizontal = 0;
 
         // Set the player's left/right movement
@@ -62,9 +65,9 @@ public class PlayerMovement : MonoBehaviour
         rb2d.velocity = Vector2.ClampMagnitude(rb2d.velocity, maxSpeed);
 
         // Ensure player is staying in playing field
-        transform.position = new Vector2(Mathf.Clamp(transform.position.x, -5f, 5f), transform.position.y);
+        transform.position = new Vector2(Mathf.Clamp(transform.position.x, -movementRange, movementRange), transform.position.y);
 
-        // updateAnimations(float moveHorizontal, Animator animator, SpriteRenderer sprite)
+        updateAnimations(moveHorizontal, animator, sprite);
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -78,7 +81,7 @@ public class PlayerMovement : MonoBehaviour
 
 		// If player has hit an obstacle, end the game
 		if (other.gameObject.CompareTag ("Obstacle")) {
-			levelManager.endGame ();
+			levelManager.hitObstacle ();
 		}
 
 		// If player has the end level object, finish the level
@@ -108,17 +111,17 @@ public class PlayerMovement : MonoBehaviour
         //If the player is moving, flip the sprite so that the character is facing the right direction
         if(moveHorizontal < 0)
         {
-        	animator.SetBool("isWalking", true);
+        	//animator.SetBool("isWalking", true);
         	sprite.flipX = true;
         }
         else if(moveHorizontal > 0)
         {
-        	animator.SetBool("isWalking", true);
+        	//animator.SetBool("isWalking", true);
         	sprite.flipX = false;
         }
         else
         {
-        	animator.SetBool("isWalking", false);
+        	//animator.SetBool("isWalking", false);
         }
     }
 }
