@@ -26,11 +26,13 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
     private SpriteRenderer sprite;
 	private Rigidbody2D rb2d;
+	private BoxCollider2D bc2d;
 
     // Use this for initialization
     void Start()
 	{
 		rb2d = GetComponent<Rigidbody2D>();
+		bc2d = GetComponent<BoxCollider2D>();
         sprite = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
     }
@@ -83,6 +85,7 @@ public class PlayerMovement : MonoBehaviour
 		// If player has hit an obstacle, end the game
 		if (other.gameObject.CompareTag ("Obstacle")) {
 			levelManager.hitObstacle ();
+			StartCoroutine("FlashSprite");
 		}
 
 		// If player has the end level object, finish the level
@@ -99,6 +102,24 @@ public class PlayerMovement : MonoBehaviour
 			levelManager.endLevel(true);
 		}
     }
+
+	// When the player is hit, indicate with a flashing of the player sprite
+	// Also disable box collider to prevent another immediate collision
+	private IEnumerator FlashSprite()
+	{
+		bc2d.enabled = false;
+
+		bool enabled = false;
+		for (int i = 0; i < 6; i++) 
+		{
+			sprite.enabled = enabled;
+			yield return new WaitForSeconds (.1f);
+			enabled = !enabled;
+		}
+
+		bc2d.enabled = true;
+		yield return null;
+	}
 
     private bool jumpCooldownActive()
     {
