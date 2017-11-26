@@ -32,7 +32,7 @@ public class LivesCounter : MonoBehaviour {
         if (lives > 0)
         {
             var posRect = new Rect(70, 30, texWidth / 5 * lives, texHeight);
-            var texRect = new Rect(0, 0, 1.0f / 5 * lives, 1.0f);
+            var texRect = new Rect(0, 0, 1.0f / 5.2f * lives, 1.0f);
             GUI.DrawTextureWithTexCoords(posRect, texture, texRect);
         }
     }
