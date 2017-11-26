@@ -108,8 +108,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void updateAnimations(float moveHorizontal)
     {
-		// If the playe ris moving upwards, play the boost animation
-		animator.SetBool("hasJumped", (rb2d.velocity.y <= 0));
+		// If the player is moving upwards, play the boost animation
+		animator.SetBool("hasJumped", (rb2d.velocity.y > 0));
 
         //If the player is moving, flip the sprite so that the character is facing the right direction
         if (moveHorizontal < 0)
