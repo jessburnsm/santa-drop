@@ -19,13 +19,13 @@ public class PlayerMovement : MonoBehaviour
     private bool hasJumped;
     private float jumpTime = 0f;
 
-    // Rigidbody2D component required to use 2D Physics.
-    private Rigidbody2D rb2d;
-
+	// The Level Manager for the current level
 	public LevelManager levelManager;
 
+	// Components of the player
     private Animator animator;
     private SpriteRenderer sprite;
+	private Rigidbody2D rb2d;
 
     // Use this for initialization
     void Start()
@@ -89,15 +89,14 @@ public class PlayerMovement : MonoBehaviour
 		if (other.gameObject.CompareTag("Finish"))
 		{
 			gameObject.SetActive(false);
-			levelManager.endLevel ();
+			levelManager.endLevel();
 		}
 
 		// If player has the end level bonus object, finish the level + add score bonus
 		if (other.gameObject.CompareTag("FinishBonus"))
 		{
 			gameObject.SetActive(false);
-			levelManager.addBonus ();
-			levelManager.endLevel ();
+			levelManager.endLevel(true);
 		}
     }
 
@@ -109,23 +108,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void updateAnimations(float moveHorizontal)
     {
-        if(rb2d.velocity.y <= 0)
-        {
-            animator.SetBool("hasJumped", false);
-        }
-        else
-        {
-            animator.SetBool("hasJumped", true);
-        }
+		// If the playe ris moving upwards, play the boost animation
+		animator.SetBool("hasJumped", (rb2d.velocity.y <= 0));
 
         //If the player is moving, flip the sprite so that the character is facing the right direction
         if (moveHorizontal < 0)
-        {
         	sprite.flipX = true;
-        }
         else if(moveHorizontal > 0)
-        {
         	sprite.flipX = false;
-        }
     }
 }

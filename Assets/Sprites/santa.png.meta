@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 7833b9c79f00e9141ae92d0f76c826c9
-timeCreated: 1511668634
+timeCreated: 1511724276
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -154,10 +154,10 @@ TextureImporter:
       name: Santa_4
       rect:
         serializedVersion: 2
-        x: 2028
+        x: 2031
         y: 0
-        width: 558
-        height: 1425
+        width: 555
+        height: 1418
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

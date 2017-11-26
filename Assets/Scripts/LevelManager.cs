@@ -16,33 +16,34 @@ public class LevelManager : MonoBehaviour {
     public int lives = 3;
 	
 	// Update is called once per frame
-	void Update () {
-		updateScoreText ();
+	void Update() 
+	{
+		updateScoreText();
 	}
 
 	void updateScoreText()
 	{
-		scoreText.text = "Score: "+ score;
+		scoreText.text = "Score: " + score;
 	}
 
 	public void addBonus(){
 		score += bonus;
 		bonusApplied = true;
-		updateScoreText ();
+		updateScoreText();
 	}
 
 	public void updateScore(){
 		score += 1;
-		updateScoreText ();
+		updateScoreText();
 	}
 
 	public void endGame(){
-		Debug.Log ("Game has ended!");
+		Debug.Log("Game has ended!");
         SceneManager.LoadScene("GameOver");
 	}
 
-	public void endLevel(){
-		Debug.Log ("Level has ended!");
+	public void endLevel(bool bonus = false){
+		Debug.Log("Level has ended!");
 	}
 
     public void hitObstacle(){

@@ -15,7 +15,8 @@ public class LivesCounter : MonoBehaviour {
     private float texHeight;
 
 	// Use this for initialization
-	void Start () {
+	void Start() 
+	{
         texWidth = texture.width;
         texHeight = texture.height;
 

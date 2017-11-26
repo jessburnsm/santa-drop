@@ -21,7 +21,8 @@ public class LevelGenerator : MonoBehaviour {
     public float collectibleMaxY = 3f;
 
     // Use this for initialization
-    void Start () {
+    void Start () 
+	{
         Vector3 spawnPosition = new Vector3();
 
 		for(int i = 0; i < numberOfPlatforms; i++)
