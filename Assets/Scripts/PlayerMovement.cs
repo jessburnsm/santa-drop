@@ -67,7 +67,8 @@ public class PlayerMovement : MonoBehaviour
         // Ensure player is staying in playing field
         transform.position = new Vector2(Mathf.Clamp(transform.position.x, -movementRange, movementRange), transform.position.y);
 
-        updateAnimations(moveHorizontal, animator, sprite);
+        // Update player animations based on movement
+        updateAnimations(moveHorizontal);
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -106,22 +107,25 @@ public class PlayerMovement : MonoBehaviour
         return !((Time.time - jumpTime) >= jumpCooldown);
     }
 
-    private void updateAnimations(float moveHorizontal, Animator animator, SpriteRenderer sprite)
+    private void updateAnimations(float moveHorizontal)
     {
-        //If the player is moving, flip the sprite so that the character is facing the right direction
-        if(moveHorizontal < 0)
+        if(rb2d.velocity.y <= 0)
         {
-        	//animator.SetBool("isWalking", true);
+            animator.SetBool("hasJumped", false);
+        }
+        else
+        {
+            animator.SetBool("hasJumped", true);
+        }
+
+        //If the player is moving, flip the sprite so that the character is facing the right direction
+        if (moveHorizontal < 0)
+        {
         	sprite.flipX = true;
         }
         else if(moveHorizontal > 0)
         {
-        	//animator.SetBool("isWalking", true);
         	sprite.flipX = false;
-        }
-        else
-        {
-        	//animator.SetBool("isWalking", false);
         }
     }
 }
