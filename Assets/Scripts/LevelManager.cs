@@ -44,6 +44,7 @@ public class LevelManager : MonoBehaviour {
 
 	public void endLevel(bool bonus = false){
 		Debug.Log("Level has ended!");
+		SceneManager.LoadScene("Main");
 	}
 
     public void hitObstacle(){
