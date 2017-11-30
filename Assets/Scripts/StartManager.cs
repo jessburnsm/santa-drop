@@ -4,18 +4,25 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class StartManager : MonoBehaviour {
-	public Animator animator;
+	public Animator instructionMenuAnimator;
+	public Animator mainMenuAnimator;
+	public Animator difficultyMenuAnimator;
 
 	void Start(){
 		Screen.SetResolution (512, 640, false);
 	}
 
 	public void OpenInstructions(){
-		animator.SetBool("isOpen", true);
+		instructionMenuAnimator.SetBool("isOpen", true);
 	}
 
 	public void CloseInstructions(){
-		animator.SetBool("isOpen", false);
+		instructionMenuAnimator.SetBool("isOpen", false);
+	}
+
+	public void OpenDifficulty(){
+		mainMenuAnimator.SetBool("isOpen", false);
+		difficultyMenuAnimator.SetBool("isOpen", true);
 	}
 
 	public void StartGame(){
