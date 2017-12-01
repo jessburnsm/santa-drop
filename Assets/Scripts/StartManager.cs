@@ -25,7 +25,15 @@ public class StartManager : MonoBehaviour {
 		difficultyMenuAnimator.SetBool("isOpen", true);
 	}
 
-	public void StartGame(){
-		SceneManager.LoadScene("Scene01");
+	public void StartGameEasy(){
+		SceneManager.LoadScene("Easy");
+	}
+
+	public void StartGameMedium(){
+		SceneManager.LoadScene("Medium");
+	}
+
+	public void StartGameHard(){
+		SceneManager.LoadScene("Hard");
 	}
 }

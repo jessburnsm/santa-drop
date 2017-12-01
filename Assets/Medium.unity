@@ -1665,11 +1665,11 @@ MonoBehaviour:
     type: 2}
   LevelEnd: {fileID: 930824212}
   Chimney: {fileID: 1761697840}
-  numberOfPlatforms: 10
-  levelWidth: 4.5
+  numberOfPlatforms: 30
+  levelWidth: 4
   obstacleMinY: 4
   obstacleMaxY: 7
-  numberOfCollectibles: 5
+  numberOfCollectibles: 15
   collectibleMinY: 8
   collectibleMaxY: 14
 --- !u!4 &1353007938

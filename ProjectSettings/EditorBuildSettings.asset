@@ -8,9 +8,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Main.unity
     guid: 7e3ec94661ffc634495ee9c897ad2d7e
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scene01.unity
     guid: e98b7f53745f84817945c79037b6ceb9
-  - enabled: 1
+  - enabled: 0
     path: Assets/GameOver.unity
     guid: 520e6004595ce46f69f0380865e92274
+  - enabled: 1
+    path: Assets/Easy.unity
+    guid: 1c9688b03a1c2f64f9d2b4c32bcc1f2b
+  - enabled: 1
+    path: Assets/Hard.unity
+    guid: 683dba0071efd094288dce4c39c6d0e0
+  - enabled: 1
+    path: Assets/Medium.unity
+    guid: a14f9a4a5392e844c83e08f73537557c
