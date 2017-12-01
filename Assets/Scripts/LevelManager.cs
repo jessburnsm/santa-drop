@@ -12,6 +12,9 @@ public class LevelManager : MonoBehaviour {
 	public Text chimneyText;
 	public Text finalText;
 
+	// Game over menu
+	public Animator gameOverMenu;
+
 	// Score counter
 	private int score = 0;
 	private int bonus = 10;
@@ -40,8 +43,7 @@ public class LevelManager : MonoBehaviour {
 	}
 
 	public void endGame(){
-		Debug.Log("Game has ended!");
-        SceneManager.LoadScene("GameOver");
+		gameOverMenu.SetBool("isOpen", true);
 	}
 
 	public void endLevel(bool bonusApplied = false){
@@ -61,11 +63,14 @@ public class LevelManager : MonoBehaviour {
 		levelEndMenu.SetBool("isOpen", true);
 	}
 
-    public void hitObstacle(){
+    public bool hitObstacle(){
         lives -= 1;
 
-        if (lives <= 0)
-            endGame();
+		if (lives <= 0) {
+			endGame();
+			return false;
+		}
+		return true;
     }
 
 	public void restartGame(){

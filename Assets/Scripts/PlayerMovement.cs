@@ -84,8 +84,11 @@ public class PlayerMovement : MonoBehaviour
 
 		// If player has hit an obstacle, end the game
 		if (other.gameObject.CompareTag ("Obstacle")) {
-			levelManager.hitObstacle ();
-			StartCoroutine("FlashSprite");
+			bool continueGame = levelManager.hitObstacle();
+			if(continueGame)
+				StartCoroutine("FlashSprite");
+			else
+				gameObject.SetActive(false);
 		}
 
 		// If player has the end level object, finish the level
