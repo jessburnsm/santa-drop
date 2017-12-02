@@ -28,6 +28,9 @@ public class PlayerMovement : MonoBehaviour
 	private Rigidbody2D rb2d;
 	private BoxCollider2D bc2d;
 
+	// Alternate player animation controllers
+	public RuntimeAnimatorController animatorBlue;
+
     // Use this for initialization
     void Start()
 	{
@@ -35,6 +38,10 @@ public class PlayerMovement : MonoBehaviour
 		bc2d = GetComponent<BoxCollider2D>();
         sprite = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+
+		Debug.Log (ApplicationModel.SantaSprite);
+
+		animator.runtimeAnimatorController = animatorBlue as RuntimeAnimatorController;
     }
 
     //FixedUpdate is called at a fixed interval and is independent of frame rate. Put physics code here.

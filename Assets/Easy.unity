@@ -544,7 +544,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 461780534}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -124.79999, y: 283.60004, z: 0}
+  m_LocalPosition: {x: -125.599976, y: 284.60004, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1184603205}
@@ -946,6 +946,7 @@ MonoBehaviour:
   jumpCooldown: 5
   jumpForce: 5
   levelManager: {fileID: 205796071}
+  animatorBlue: {fileID: 9100000, guid: a934ad7fdd8b6594a993e6a12dcd220e, type: 2}
 --- !u!95 &623553170
 Animator:
   serializedVersion: 3
@@ -1274,7 +1275,7 @@ RectTransform:
   m_GameObject: {fileID: 1184603201}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 90}
-  m_LocalScale: {x: 0.016638935, y: 0.016638935, z: 0.016638935}
+  m_LocalScale: {x: 0.016583748, y: 0.016583748, z: 0.016583748}
   m_Children:
   - {fileID: 461780535}
   - {fileID: 1520011675}
@@ -1893,7 +1894,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1520011674}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -124.799805, y: 257.7, z: 0}
+  m_LocalPosition: {x: -125.59979, y: 258.7, z: 0}
   m_LocalScale: {x: 0.9999, y: 0.9999, z: 0.9999}
   m_Children: []
   m_Father: {fileID: 1184603205}
