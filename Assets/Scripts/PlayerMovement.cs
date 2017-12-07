@@ -40,8 +40,9 @@ public class PlayerMovement : MonoBehaviour
         animator = GetComponent<Animator>();
 
 		Debug.Log (ApplicationModel.SantaSprite);
-
-		animator.runtimeAnimatorController = animatorBlue as RuntimeAnimatorController;
+		if (ApplicationModel.SantaSprite == 1) {
+			animator.runtimeAnimatorController = animatorBlue as RuntimeAnimatorController;
+		} 
     }
 
     //FixedUpdate is called at a fixed interval and is independent of frame rate. Put physics code here.
