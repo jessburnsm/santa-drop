@@ -1919,7 +1919,7 @@ RectTransform:
   m_GameObject: {fileID: 1307232899}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 90}
-  m_LocalScale: {x: 0.016583748, y: 0.016583748, z: 0.016583748}
+  m_LocalScale: {x: 0.01655629, y: 0.01655629, z: 0.01655629}
   m_Children:
   - {fileID: 876687994}
   - {fileID: 890779851}
@@ -2684,10 +2684,12 @@ MonoBehaviour:
   santaSprite: {fileID: 1300584160}
   spriteDescription: {fileID: 2015774766}
   santaOptions:
-  - description: Classic Santa Claus
+  - description: Classic Claus
     sprite: {fileID: 21300000, guid: dd07f1d2cddbdef41bc358c11f067b54, type: 3}
-  - description: Non-Denominational Holiday Claus
+  - description: Nebo Claus
     sprite: {fileID: 21300000, guid: 6d9256d3a8472a04a8636047e70258a2, type: 3}
+  - description: Pepperoni Pizza Claus
+    sprite: {fileID: 21300000, guid: 94136c9c52b5fc44899cb581741b3466, type: 3}
 --- !u!4 &1720483758
 Transform:
   m_ObjectHideFlags: 0

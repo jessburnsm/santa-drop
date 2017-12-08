@@ -58,7 +58,7 @@ public class StartManager : MonoBehaviour {
 	public void SwapSanta(){
 		ApplicationModel.SantaSprite++;
 
-		if (ApplicationModel.SantaSprite > 1)
+		if (ApplicationModel.SantaSprite > santaOptions.Length - 1)
 			ApplicationModel.SantaSprite = 0;
 
 		santaSprite.sprite = santaOptions[ApplicationModel.SantaSprite].sprite;

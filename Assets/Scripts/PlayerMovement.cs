@@ -30,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
 
 	// Alternate player animation controllers
 	public RuntimeAnimatorController animatorBlue;
+	public RuntimeAnimatorController animatorPizza;
 
     // Use this for initialization
     void Start()
@@ -39,10 +40,11 @@ public class PlayerMovement : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
 
-		Debug.Log (ApplicationModel.SantaSprite);
 		if (ApplicationModel.SantaSprite == 1) {
 			animator.runtimeAnimatorController = animatorBlue as RuntimeAnimatorController;
-		} 
+		} else if (ApplicationModel.SantaSprite == 2) {
+			animator.runtimeAnimatorController = animatorPizza as RuntimeAnimatorController;
+		}
     }
 
     //FixedUpdate is called at a fixed interval and is independent of frame rate. Put physics code here.
@@ -62,6 +64,9 @@ public class PlayerMovement : MonoBehaviour
 
         // Check if player is eligible for jumping
         hasJumped = jumpCooldownActive();
+
+		// Update boost indicator
+		levelManager.updateBoost(hasJumped);
 
         // Check if player is trying to jump
         if (Input.GetKeyDown("space") && !hasJumped)
