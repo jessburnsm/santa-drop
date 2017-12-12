@@ -140,7 +140,7 @@ public class PlayerMovement : MonoBehaviour
     private bool jumpCooldownActive()
     {
         // Determine if enough time has passed to end cooldown
-        return !((Time.time - jumpTime) >= jumpCooldown);
+		return !((Time.timeSinceLevelLoad - jumpTime) >= jumpCooldown);
     }
 
     private void updateAnimations(float moveHorizontal)
