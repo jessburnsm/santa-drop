@@ -20,9 +20,6 @@ public class LevelManager : MonoBehaviour {
 	private int bonus = 10;
 	public Text scoreText;
 
-	// Boost indicator
-	public GameObject boostText;
-
 	// Level Generator
 	public LevelGenerator levelGenerator;
 
@@ -33,10 +30,6 @@ public class LevelManager : MonoBehaviour {
 	void Update() 
 	{
 		updateScoreText();
-	}
-
-	public void updateBoost(bool hasJumped){
-		boostText.SetActive(!hasJumped);
 	}
 
 	void updateScoreText()

@@ -17,8 +17,8 @@ public class LivesCounter : MonoBehaviour {
 	// Use this for initialization
 	void Start() 
 	{
-        texWidth = texture.width;
-        texHeight = texture.height;
+        texWidth = texture.width/1.4f;
+        texHeight = texture.height/1.4f;
 
         lives = levelManager.lives;
     }
@@ -32,7 +32,7 @@ public class LivesCounter : MonoBehaviour {
 	void OnGUI () {
         if (lives > 0)
         {
-            var posRect = new Rect(70, 30, texWidth / 5 * lives, texHeight);
+            var posRect = new Rect(10, 35, texWidth / 5 * lives, texHeight);
             var texRect = new Rect(0, 0, 1.0f / 5.2f * lives, 1.0f);
             GUI.DrawTextureWithTexCoords(posRect, texture, texRect);
         }

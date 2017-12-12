@@ -27,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
     private SpriteRenderer sprite;
 	private Rigidbody2D rb2d;
 	private BoxCollider2D bc2d;
+	private bool showHighlight = true;
 
 	// Alternate player animation controllers
 	public RuntimeAnimatorController animatorBlue;
@@ -65,8 +66,10 @@ public class PlayerMovement : MonoBehaviour
         // Check if player is eligible for jumping
         hasJumped = jumpCooldownActive();
 
-		// Update boost indicator
-		levelManager.updateBoost(hasJumped);
+		// Indicate if player can jump
+		if (!hasJumped && showHighlight) {
+			StartCoroutine("HighlightSprite");
+		}
 
         // Check if player is trying to jump
         if (Input.GetKeyDown("space") && !hasJumped)
@@ -74,6 +77,7 @@ public class PlayerMovement : MonoBehaviour
             rb2d.AddForce(new Vector2(0, -rb2d.velocity.y * jumpForce));
             hasJumped = true;
             jumpTime = Time.time;
+			showHighlight = true;
         }            
 
         // Clamp the force on the player to prevent them from falling too fast
@@ -134,6 +138,27 @@ public class PlayerMovement : MonoBehaviour
 		}
 
 		bc2d.enabled = true;
+		yield return null;
+	}
+
+	private IEnumerator HighlightSprite()
+	{
+		showHighlight = false;
+
+		bool color = true;
+
+		for (int i = 0; i < 6; i++) 
+		{
+			if (color) {
+				sprite.color = new Color (1, .7f, 0, 1);
+			} else {
+				sprite.color = new Color (1, 1, 1, 1);
+			}
+
+			yield return new WaitForSeconds (.1f);
+			color = !color;
+		}
+			
 		yield return null;
 	}
 
